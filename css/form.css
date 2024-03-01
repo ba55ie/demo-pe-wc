@@ -1,0 +1,56 @@
+form {
+	display: flex;
+	flex-flow: row wrap;
+
+	gap: 1rem;
+
+	> * {
+		flex: 1;
+	}
+
+	&[inert] {
+		& input,
+		& button {
+			filter: invert(0.25);
+		}
+	}
+}
+
+:where(button, input, textarea, select) {
+	display: inline-block;
+
+	width: 100%;
+
+	margin: 0;
+	padding: 0.5rem;
+
+	font: inherit;
+	font-weight: normal;
+	line-height: inherit;
+
+	border: 1px solid #adadad;
+	border-radius: 0.25em;
+}
+
+button {
+	appearance: none;
+
+	width: auto;
+
+	padding: 0.5rem 1rem;
+
+	cursor: pointer;
+
+	color: white;
+	background: hotpink;
+	border-color: hotpink;
+}
+
+.success {
+	padding: 0.5rem 1rem;
+
+	color: green;
+
+	border: 1px solid green;
+	border-radius: 0.25em;
+}

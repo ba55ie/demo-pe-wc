@@ -1,0 +1,6 @@
+<nav class="nav">
+	<a href="index.html">Home</a>
+	<a href="why.html">Why</a>
+	<a href="web-components.html">Article</a>
+	<a href="newsletter.html">Newsletter</a>
+</nav>

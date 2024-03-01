@@ -1,0 +1,24 @@
+*,
+:before,
+:after {
+	box-sizing: border-box;
+}
+
+:where(html, body) {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+:where(iframe, video, img) {
+	width: 100%;
+}
+
+body {
+	line-height: 1.5;
+	font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+}
+
+:where(h1, h2, h3, h4, h5, h6) {
+	font-family: CenturyGothic, AppleGothic, sans-serif;
+}

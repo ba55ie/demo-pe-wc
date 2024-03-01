@@ -1,0 +1,5 @@
+<header>
+	<h1 class="logo">The Retro Web (Component) Show!</h1>
+
+	<!--#include file="nav.shtml" -->
+</header>

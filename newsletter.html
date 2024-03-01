@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!--#set var="title" value="Newsletter" -->
+		<!--#include file="partials/head.shtml" -->
+	</head>
+	<body>
+		<!--#include file="partials/header.shtml" -->
+
+		<main>
+			<article>
+				<h1>Newsletter</h1>
+
+				<p>
+					<strong
+						>Are you fed up with React or hate modern front-end web
+						development?</strong
+					><br />
+
+					Learn how to build a simpler, more resilient web!
+				</p>
+
+				<ajax-form>
+					<form class="form" action="/2-newsletter.html" method="post">
+						<div class="field">
+							<label class="screen-reader" for="email"
+								>Enter your email address to get Daily Developer Tips
+								emails</label
+							>
+							<input
+								name="email"
+								id="email"
+								placeholder="Your email address..."
+								type="email"
+								required
+							/>
+						</div>
+
+						<button>Sign me up, Scotty!</button>
+					</form>
+
+					<template
+						><div class="success">
+							Thank you for your subscription <strong class="user"></strong>!
+						</div></template
+					>
+				</ajax-form>
+
+				<blockquote>
+					This is the most valuable newsletter I have ever subscribed to!
+
+					<footer>
+						<cite>-Bertus Staigerpaip</cite>
+					</footer>
+				</blockquote>
+			</article>
+		</main>
+
+		<!--#include virtual="partials/footer.shtml" -->
+		<!--#include virtual="partials/scripts.shtml" -->
+	</body>
+</html>

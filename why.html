@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!--#set var="title" value="Why" -->
+		<!--#include file="partials/head.shtml" -->
+	</head>
+	<body>
+		<!--#include file="partials/header.shtml" -->
+
+		<main>
+			<h1>The elevator pitch for Web Components</h1>
+
+			<section>
+				<h2>Benefits</h2>
+
+				<p>
+					Here’s what makes Web Components really shine over traditional
+					JavaScript libraries…
+				</p>
+
+				<ol>
+					<li>You get scoping and instantiation for free out-of-the-box.</li>
+					<li>
+						You get built-in methods that detect when the element enters or
+						leaves the DOM, and when attributes on it change.
+					</li>
+					<li>
+						Options and configs are declarative (in the HTML), not just JS. That
+						makes it them both easier to author and easier to use differently in
+						various places in the HTML.
+					</li>
+				</ol>
+			</section>
+
+			<section>
+				<h2>Scoping and instantiation</h2>
+
+				<h3>In the past</h3>
+
+				<p>
+					We would probably use a helper library like
+					<a href="https://jquery.com/">jQuery</a> or maybe something fancier
+					like
+					<a href="https://github.com/rikschennink/conditioner/"
+						>Conditioner.js</a
+					>
+				</p>
+
+				<pre><code class="language-js">// Look mum, no classes!
+function WordCount($el, options) {
+  this.$el = $el;
+  this.options = options || {};
+
+  this.init();
+}
+
+WordCount.prototype.init = function () {
+  // Do stuff
+};
+
+$(document).ready(function () {
+  // DOM is ready
+  $('[data-module="word-count"]').each(function ($el) {
+    return new WordCount($el);
+  });
+});
+
+// HTML
+&lt;div data-module="word-count"&gt;&lt;/div&gt;
+</code></pre>
+
+				<h3>With Web Components</h3>
+
+				<p>
+					With Web Components, simply including the custom element in the HTML
+					instantiates it.
+				</p>
+
+				<pre><code class="language-html">&lt;word-count&gt;&lt;/word-count&gt;</code></pre>
+			</section>
+
+			<section>
+				<h2>Built-in helper methods (callbacks)</h2>
+
+				<p>
+					Web Components include the <code>connectedCallback()</code>,
+					<code>disconnectedCallback()</code>, and
+					<code>attributeChangedCallback()</code> methods.
+				</p>
+
+				<p>
+					These run when a custom element enters the DOM, leaves the DOM, or an
+					attribute on it changes.
+				</p>
+
+				<p>
+					If you have content that gets dynamically rendered, it's really nice
+					to have built-in methods for detecting when it enters or leaves the
+					UI. They provide useful hooks for instantiating tasks when an element
+					is loaded, and cleaning things up when it leaves the DOM.
+				</p>
+
+				<p>
+					Detecting attribute changes means you can do cool reactivity stuff
+					with your component. For example, the browser-native details element
+					displays its contents when the open attribute is added to it. The
+					dialog element is displayed in non-modal form if you add open to it.
+					The <code>attributeChangedCallback()</code> method lets you do similar
+					things with your custom Web Components.
+				</p>
+			</section>
+
+			<aside>
+				<h3>Example 1</h3>
+
+				<p>
+					Lets create a Web Component for
+					<a href="./web-components.html">the articles'</a> word count.
+				</p>
+			</aside>
+
+			<section>
+				<h2>Styling / CSS</h2>
+
+				<p>Styling can be done in the following ways:</p>
+
+				<ol>
+					<li>In a global <code>CSS</code> file or in the html document.</li>
+					<li>
+						Render a <code>style</code> tag in the html of the component or use
+						<code>document.createElement('style')</code>.
+					</li>
+					<li>
+						Use the
+						<a
+							href="https://developer.mozilla.org/en-US/docs/Web/API/Document/adoptedStyleSheets"
+							><code>adoptedStyleSheets</code></a
+						>
+						API
+					</li>
+					<li>
+						🦜 Use
+						<a
+							href="https://github.com/WICG/webcomponents/blob/gh-pages/proposals/css-modules-v1-explainer.md"
+							>CSS Module Scripts</a
+						>
+					</li>
+				</ol>
+			</section>
+
+			<section>
+				<h2>Creating HTML</h2>
+
+				<ol>
+					<li>
+						Simply set the <code>innerHTML</code> property with an HTML string.
+					</li>
+					<li>
+						Or use <code>&lt;template&gt;</code>:
+						<a
+							href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template"
+							>The Content Template element</a
+						>. Either in the HTML source document or in code with
+						<code>document.createElement('template')</code>.
+					</li>
+					<li>
+						🦜 🥳 declarative shadow DOM:
+						<code>
+							&lt;template shadowrootmode="open"&gt;&lt;/template&gt;</code
+						>
+					</li>
+				</ol>
+			</section>
+
+			<aside>
+				<h3>Example 2</h3>
+
+				<p>
+					Lets create a Web Component for submitting the
+					<a href="./newsletter.html">newsletter</a> form with
+					<code>fetch</code>.
+				</p>
+			</aside>
+		</main>
+
+		<!--#include virtual="partials/footer.shtml" -->
+		<!--#include virtual="partials/scripts.shtml" -->
+	</body>
+</html>
