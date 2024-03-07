@@ -2,23 +2,33 @@
 
 customElements.define(
 	'word-count',
-	class extends HTMLElement {
+	class WordCount extends HTMLElement {
 		/**
 		 * The average reader can read 238 words per minute (WPM) while reading silently.
 		 * When reading aloud, the average reader can read 183 words per minute (WPM).
 		 */
-		WPM = 238;
+		static WPM = 238;
+
+		#words;
+
+		get words() {
+			this.#words ??= this.innerText
+				.replaceAll('\n', ' ')
+				.split(' ')
+				.filter(Boolean);
+
+			return this.#words;
+		}
 
 		get showReadTime() {
 			return this.hasAttribute('read-time');
 		}
 
-		connectedCallback() {
-			const words = this.innerText
-				.replaceAll('\n', ' ')
-				.split(' ')
-				.filter(Boolean);
+		get readTime() {
+			return Math.ceil(this.words.length / WordCount.WPM);
+		}
 
+		connectedCallback() {
 			const sheet = new CSSStyleSheet();
 
 			sheet.replaceSync(`
@@ -37,10 +47,8 @@ customElements.define(
 
 			this.insertAdjacentHTML(
 				'afterbegin',
-				`<span class="word-count">${words.length} words to read ${
-					this.showReadTime
-						? `in ${Math.floor(words.length / this.WPM)} minutes`
-						: ''
+				`<span class="word-count">${this.words.length} words to read ${
+					this.showReadTime ? `in ${this.readTime} minutes` : ''
 				}</span>`
 			);
 		}
